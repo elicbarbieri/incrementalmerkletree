@@ -7,7 +7,15 @@ and this project adheres to Rust's notion of
 
 ## Unreleased
 
+### Added
+- `Hashable::combine_pairs`, a provided method hashing a level's pairs in one
+  call (default = `combine` per pair), for implementations with a faster batch path
+- `frontier::{NonEmptyFrontier, Frontier}::append_batch`, appending many leaves
+  with one `combine_pairs` call per level, and `append_batch_visiting`, which also
+  reports every node the batch completes (once, in the batch holding its last leaf)
+
 ### Changed
+- `NonEmptyFrontier::root` and `Frontier::root` hash through `combine_pairs`
 - MSRV is now 1.88.0.
 - Migrated to `rand 0.10`, `rand_core 0.10`, and `rand_chacha 0.10`.
 - `incrementalmerkletree::frontier` (under the `test-dependencies` feature):
